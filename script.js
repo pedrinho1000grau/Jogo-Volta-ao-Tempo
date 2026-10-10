@@ -371,6 +371,9 @@ let maiorNivel = 0;
 let erros = 0;
 let destinoDepoisDoFeedback = null;
 
+// Guarda a ordem das alternativas exibidas em cada pergunta.
+let alternativasEmbaralhadasAtuais = [];
+
 function mostrarTela(telaEscolhida) {
     document.querySelectorAll(".tela").forEach(tela => {
         tela.classList.remove("ativa");
@@ -542,6 +545,7 @@ function iniciarJogo() {
     maiorNivel = 0;
     erros = 0;
     destinoDepoisDoFeedback = null;
+    alternativasEmbaralhadasAtuais = [];
 
     configurarHistoriaRecolhivel();
     mostrarTela(telaJogo);
@@ -569,6 +573,62 @@ function atualizarEnergia() {
     indicador.textContent = `ENERGIA TEMPORAL: ${energia}%`;
 }
 
+// Embaralhamento de Fisher-Yates.
+// A resposta correta mantém sua propriedade "correta: true".
+function embaralharAlternativas(alternativas) {
+    const lista = [...alternativas];
+
+    for (let i = lista.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [lista[i], lista[j]] = [lista[j], lista[i]];
+    }
+
+    return lista;
+}
+
+function atualizarImagemNivel(numeroNivel) {
+    const imagem = document.querySelector("#imagem-historia");
+    const legenda = document.querySelector("#legenda-imagem");
+
+    // Se o HTML não tiver imagens, o jogo continua funcionando normalmente.
+    if (!imagem) return;
+
+    const nomes = {
+        1: "Mundo dos dinossauros",
+        2: "Vulcões pré-históricos",
+        3: "Tiranossauro rex",
+        4: "Primeiros seres humanos",
+        5: "Pinturas rupestres",
+        6: "Cidade futurista",
+        7: "Robôs inteligentes",
+        8: "Inteligência artificial",
+        9: "Viagem espacial",
+        10: "Mundo tecnológico",
+        11: "Europa em 1939",
+        12: "Início da guerra",
+        13: "Resistência europeia",
+        14: "Dia D",
+        15: "Fim da guerra",
+        16: "Brasil em 1964",
+        17: "Censura e imprensa",
+        18: "Movimento estudantil",
+        19: "Diretas Já",
+        20: "Redemocratização"
+    };
+
+    const nome = nomes[numeroNivel];
+
+    if (!nome) return;
+
+    imagem.src = `imagens/nivel${numeroNivel}.jpg`;
+    imagem.alt = nome;
+
+    if (legenda) {
+        legenda.textContent = nome;
+    }
+}
+
 function mostrarPergunta() {
     if (maiorNivel >= TOTAL) {
         mostrarResultado();
@@ -590,8 +650,18 @@ function mostrarPergunta() {
     caixaAlternativas.replaceChildren();
     caixaFeedback.hidden = true;
 
-    pergunta.alternativas.forEach(alternativa => {
+    // CORREÇÃO PRINCIPAL:
+    // As alternativas são embaralhadas a cada vez que a pergunta aparece.
+    alternativasEmbaralhadasAtuais = embaralharAlternativas(
+        pergunta.alternativas
+    );
+
+    // Atualiza a imagem, caso o HTML tenha os elementos de imagem.
+    atualizarImagemNivel(atual + 1);
+
+    alternativasEmbaralhadasAtuais.forEach(alternativa => {
         const botao = document.createElement("button");
+
         botao.type = "button";
         botao.textContent = alternativa.texto;
 
@@ -610,11 +680,18 @@ function selecionarResposta(alternativaEscolhida, botaoEscolhido) {
 
     respondeu = true;
 
-    const pergunta = perguntas[atual];
     const botoes = caixaAlternativas.querySelectorAll("button");
 
+    // Desabilita todos os botões para impedir múltiplas respostas.
     botoes.forEach(botao => {
         botao.disabled = true;
+    });
+
+    // Destaca a alternativa correta usando a ordem embaralhada.
+    alternativasEmbaralhadasAtuais.forEach((alternativa, indice) => {
+        if (alternativa.correta) {
+            botoes[indice].classList.add("correta");
+        }
     });
 
     if (alternativaEscolhida.correta) {
@@ -623,6 +700,7 @@ function selecionarResposta(alternativaEscolhida, botaoEscolhido) {
         maiorNivel++;
 
         tituloFeedback.textContent = "Coordenadas estabilizadas! ✦";
+
         botaoEscolhido.classList.add("correta");
 
         if (maiorNivel >= TOTAL) {
@@ -643,6 +721,7 @@ function selecionarResposta(alternativaEscolhida, botaoEscolhido) {
         energia = Math.max(0, energia - 20);
 
         tituloFeedback.textContent = "Falha temporal! Recuando...";
+
         botaoEscolhido.classList.add("errada");
 
         destinoDepoisDoFeedback = Math.max(0, atual - 1);
@@ -652,12 +731,6 @@ function selecionarResposta(alternativaEscolhida, botaoEscolhido) {
             " A Cronos perdeu estabilidade e está recuando para uma época anterior. " +
             "Você precisa superar um desafio temporal antes de continuar.";
     }
-
-    pergunta.alternativas.forEach((alternativa, indice) => {
-        if (alternativa.correta) {
-            botoes[indice].classList.add("correta");
-        }
-    });
 
     atualizarEnergia();
     caixaFeedback.hidden = false;

@@ -1,12 +1,14 @@
 
+
 :root {
-    --azul-escuro: #061523;
-    --azul: #087da3;
-    --ciano: #50e8ff;
-    --dourado: #ffd486;
-    --branco: #f5f7ff;
-    --painel: rgba(4, 20, 37, 0.88);
+    --azul-escuro: #080D1B;
+    --azul: #176B87;
+    --ciano: #5CE1E6;
+    --dourado: #FFC857;
+    --branco: #F4F1E8;
+    --painel: rgba(8, 18, 37, 0.92);
 }
+
 
 * {
     box-sizing: border-box;

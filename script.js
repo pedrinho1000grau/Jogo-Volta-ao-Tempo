@@ -371,7 +371,6 @@ let maiorNivel = 0;
 let erros = 0;
 let destinoDepoisDoFeedback = null;
 
-// Guarda a ordem das alternativas exibidas em cada pergunta.
 let alternativasEmbaralhadasAtuais = [];
 
 function mostrarTela(telaEscolhida) {
@@ -573,8 +572,6 @@ function atualizarEnergia() {
     indicador.textContent = `ENERGIA TEMPORAL: ${energia}%`;
 }
 
-// Embaralhamento de Fisher-Yates.
-// A resposta correta mantém sua propriedade "correta: true".
 function embaralharAlternativas(alternativas) {
     const lista = [...alternativas];
 
@@ -591,7 +588,6 @@ function atualizarImagemNivel(numeroNivel) {
     const imagem = document.querySelector("#imagem-historia");
     const legenda = document.querySelector("#legenda-imagem");
 
-    // Se o HTML não tiver imagens, o jogo continua funcionando normalmente.
     if (!imagem) return;
 
     const nomes = {
@@ -650,13 +646,10 @@ function mostrarPergunta() {
     caixaAlternativas.replaceChildren();
     caixaFeedback.hidden = true;
 
-    // CORREÇÃO PRINCIPAL:
-    // As alternativas são embaralhadas a cada vez que a pergunta aparece.
     alternativasEmbaralhadasAtuais = embaralharAlternativas(
         pergunta.alternativas
     );
 
-    // Atualiza a imagem, caso o HTML tenha os elementos de imagem.
     atualizarImagemNivel(atual + 1);
 
     alternativasEmbaralhadasAtuais.forEach(alternativa => {
@@ -682,12 +675,10 @@ function selecionarResposta(alternativaEscolhida, botaoEscolhido) {
 
     const botoes = caixaAlternativas.querySelectorAll("button");
 
-    // Desabilita todos os botões para impedir múltiplas respostas.
     botoes.forEach(botao => {
         botao.disabled = true;
     });
 
-    // Destaca a alternativa correta usando a ordem embaralhada.
     alternativasEmbaralhadasAtuais.forEach((alternativa, indice) => {
         if (alternativa.correta) {
             botoes[indice].classList.add("correta");
@@ -819,6 +810,26 @@ function mostrarResultado() {
 
     document.querySelector("#titulo-final").textContent = titulo;
     document.querySelector("#mensagem-final").textContent = mensagem;
+
+    // CRÉDITOS DOS CRIADORES
+    let creditos = document.querySelector("#creditos-final");
+
+    if (!creditos) {
+        creditos = document.createElement("p");
+        creditos.id = "creditos-final";
+        creditos.className = "creditos-final";
+
+        document.querySelector("#mensagem-final").after(creditos);
+    }
+
+    creditos.textContent = "Desenvolvido por Pedro Henrique e Hellen Dias";
+
+    creditos.style.textAlign = "center";
+    creditos.style.marginTop = "25px";
+    creditos.style.fontWeight = "bold";
+    creditos.style.color = "#5CE1E6";
+    creditos.style.fontSize = "16px";
+    creditos.style.letterSpacing = "1px";
 
     let resumo = document.querySelector("#resumo-temporal");
 

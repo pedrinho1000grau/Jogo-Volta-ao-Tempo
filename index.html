@@ -1,20 +1,110 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#061a2b">
+    <title>De Volta ao Futuro</title>
     <link rel="stylesheet" href="style.css">
-    <title>Você decide o futuro da IA</title>
 </head>
 <body>
-    <div class="caixa-principal">
-        <h1>Você decide o futuro da IA</h1>
-        <div class="caixa-perguntas"></div>
-        <div class="caixa-alternativas"></div>
-        <div class="caixa-resultado">
-            <p class="texto-resultado"></p>
-        </div>
-    </div>
+    <main class="caixa-principal">
+
+        <section id="tela-inicial" class="tela ativa">
+            <div class="ampulheta" aria-hidden="true">⌛</div>
+
+            <p class="subtitulo">UMA AVENTURA ATRAVÉS DAS ERAS</p>
+            <h1>DE VOLTA AO<br><span>FUTURO</span></h1>
+
+            <div class="ornamento">✦ ━━━━━━━━━ ✦</div>
+            <p class="descricao">
+                O tempo está em suas mãos. Prepare-se para explorar
+                diferentes épocas e descobrir os segredos da história.
+            </p>
+
+            <button id="botao-iniciar" class="botao botao-principal">
+                <span>▶</span> INICIAR VIAGEM
+            </button>
+
+            <button id="botao-como-jogar" class="botao botao-secundario">
+                ◇ COMO JOGAR
+            </button>
+        </section>
+
+        <section id="tela-instrucoes" class="tela">
+            <p class="etiqueta">MANUAL DO VIAJANTE</p>
+            <h2>Como jogar?</h2>
+
+            <p class="texto-instrucao">
+                Prepare-se para uma jornada através do tempo!
+            </p>
+
+            <ul class="instrucoes">
+                <li>Explore diferentes épocas históricas.</li>
+                <li>Responda às perguntas para avançar na jornada.</li>
+                <li>Leia as explicações e aprenda algo novo.</li>
+                <li>Acumule pontos acertando as respostas.</li>
+            </ul>
+
+            <button id="botao-voltar" class="botao botao-principal">
+                VOLTAR AO INÍCIO
+            </button>
+        </section>
+
+        <section id="tela-jogo" class="tela">
+            <header class="cabecalho-jogo">
+                <span class="marca">⌛ DE VOLTA AO FUTURO</span>
+                <span id="contador">VIAGEM 01</span>
+            </header>
+
+            <div class="progresso">
+                <div id="barra-progresso"></div>
+            </div>
+
+            <p id="epoca" class="etiqueta">PRÓXIMA PARADA</p>
+            <h2 id="titulo-epoca">O início da jornada</h2>
+            <p id="numero-pergunta" class="numero-pergunta"></p>
+
+            <div class="caixa-perguntas"></div>
+            <div class="caixa-alternativas"></div>
+
+            <div id="caixa-feedback" class="caixa-feedback" aria-live="polite" hidden>
+                <h3 id="titulo-feedback"></h3>
+                <p id="texto-feedback"></p>
+                <button id="botao-continuar" class="botao botao-principal">
+                    CONTINUAR VIAGEM →
+                </button>
+            </div>
+        </section>
+
+        <section id="tela-final" class="tela">
+            <div class="ampulheta" aria-hidden="true">⌛</div>
+            <p class="etiqueta">FIM DA JORNADA</p>
+            <h2 id="titulo-final">Viagem concluída!</h2>
+            <p id="mensagem-final"></p>
+
+            <div class="placar">
+                <span>SUA PONTUAÇÃO</span>
+                <strong id="pontuacao-final">0/10</strong>
+            </div>
+
+            <button id="botao-reiniciar" class="botao botao-principal">
+                ↻ VIAJAR NOVAMENTE
+            </button>
+
+            <button id="botao-inicio-final" class="botao botao-secundario">
+                VOLTAR AO INÍCIO
+            </button>
+        </section>
+
+        <footer class="rodape">
+            <span>UMA VIAGEM ATRAVÉS DO TEMPO</span>
+            <span>✦</span>
+        </footer>
+
+    </main>
+
     <script src="script.js"></script>
 </body>
 </html>

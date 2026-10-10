@@ -1,157 +1,92 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Você Decide o Futuro da IA</title>
+    <meta name="theme-color" content="#061a2b">
+    <title>De Volta ao Futuro</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <main class="caixa-principal">
 
-    <header class="cabecalho">
-        <h1>VOCÊ DECIDE O FUTURO DA IA</h1>
-        <p>Uma viagem através do tempo e da tecnologia</p>
-    </header>
-
-    <main>
-
-        <!-- TELA INICIAL -->
         <section id="tela-inicial" class="tela ativa">
-            <div class="ampulheta" aria-hidden="true">⏳</div>
+            <div class="ampulheta" aria-hidden="true">⌛</div>
 
-            <p class="etiqueta">PROJETO INTERATIVO</p>
-            <h2>O futuro está em suas mãos</h2>
+            <p class="subtitulo">UMA AVENTURA ATRAVÉS DAS ERAS</p>
+            <h1>DE VOLTA AO<br><span>FUTURO</span></h1>
 
-            <p>
-                O tempo está instável e a inteligência artificial está
-                mudando o rumo da humanidade. Suas escolhas determinarão
-                o futuro da sociedade.
+            <div class="ornamento">✦ ━━━━━━━━━ ✦</div>
+            <p class="descricao">
+                O tempo está em suas mãos. Prepare-se para explorar
+                diferentes épocas e descobrir os segredos da história.
             </p>
 
             <button id="botao-iniciar" class="botao botao-principal">
-                INICIAR VIAGEM
+                <span>▶</span> INICIAR VIAGEM
             </button>
 
-            <button id="botao-instrucoes" class="botao botao-secundario">
-                COMO JOGAR
+            <button id="botao-como-jogar" class="botao botao-secundario">
+                ◇ COMO JOGAR
             </button>
         </section>
 
-        <!-- TELA DE INSTRUÇÕES -->
         <section id="tela-instrucoes" class="tela">
             <p class="etiqueta">MANUAL DO VIAJANTE</p>
             <h2>Como jogar?</h2>
 
-            <p>
-                Você viajará por diferentes cenários e períodos históricos,
-                enfrentando desafios relacionados à inteligência artificial.
+            <p class="texto-instrucao">
+                Prepare-se para uma jornada através do tempo!
             </p>
 
-            <ul>
-                <li>Leia a situação apresentada em cada fase.</li>
-                <li>Escolha a alternativa que considerar correta.</li>
-                <li>Suas respostas influenciam o resultado da jornada.</li>
-                <li>Preste atenção à sua energia e aos erros temporais.</li>
-                <li>Responda às 20 perguntas para concluir a viagem.</li>
+            <ul class="instrucoes">
+                <li>Explore diferentes épocas históricas.</li>
+                <li>Responda às perguntas para avançar na jornada.</li>
+                <li>Leia as explicações e aprenda algo novo.</li>
+                <li>Acumule pontos acertando as respostas.</li>
             </ul>
 
-            <button id="botao-voltar-instrucoes" class="botao botao-secundario">
-                VOLTAR
-            </button>
-
-            <button id="botao-comecar-instrucoes" class="botao botao-principal">
-                COMEÇAR JOGO
+            <button id="botao-voltar" class="botao botao-principal">
+                VOLTAR AO INÍCIO
             </button>
         </section>
 
-        <!-- TELA DO JOGO -->
         <section id="tela-jogo" class="tela">
+            <header class="cabecalho-jogo">
+                <span class="marca">⌛ DE VOLTA AO FUTURO</span>
+                <span id="contador">VIAGEM 01</span>
+            </header>
 
-            <div class="painel-jogo">
-                <div class="informacao-jogo">
-                    <span id="numero-fase">FASE 1</span>
-                    <span id="energia">ENERGIA: 100%</span>
-                </div>
-
-                <div class="barra-energia">
-                    <div id="barra-energia-preenchimento"></div>
-                </div>
+            <div class="progresso">
+                <div id="barra-progresso"></div>
             </div>
 
-            <!-- HISTÓRIA QUE PODE SER RECOLHIDA -->
-            <div id="painel-historia" class="painel-historia">
-                <button
-                    id="botao-historia"
-                    class="botao-historia"
-                    type="button"
-                    aria-expanded="true"
-                    aria-controls="texto-historia"
-                >
-                    <span>📖 CONTEXTO DA MISSÃO</span>
-                    <span id="icone-historia">−</span>
-                </button>
+            <p id="epoca" class="etiqueta">PRÓXIMA PARADA</p>
+            <h2 id="titulo-epoca">O início da jornada</h2>
+            <p id="numero-pergunta" class="numero-pergunta"></p>
 
-                <div id="texto-historia" class="texto-historia">
-                    <p id="historia-missao">
-                        Prepare-se para iniciar sua viagem pelo tempo.
-                    </p>
-                </div>
-            </div>
+            <div class="caixa-perguntas"></div>
+            <div class="caixa-alternativas"></div>
 
-            <!-- CENÁRIO DA FASE -->
-            <div id="imagem-nivel" class="imagem-nivel">
-                <div class="conteudo-imagem-nivel">
-                    <span id="icone-nivel">🕰️</span>
-                    <h2 id="nome-nivel">Portal Temporal</h2>
-                </div>
-            </div>
-
-            <!-- PERGUNTA -->
-            <div class="cartao-pergunta">
-                <p id="categoria-pergunta" class="etiqueta">
-                    DESAFIO TEMPORAL
-                </p>
-
-                <h2 id="pergunta">
-                    Sua missão está prestes a começar.
-                </h2>
-
-                <div id="alternativas" class="alternativas"></div>
-
-                <p id="feedback-resposta" aria-live="polite"></p>
-
-                <button
-                    id="botao-continuar"
-                    class="botao botao-principal"
-                    style="display: none;"
-                >
-                    CONTINUAR VIAGEM
+            <div id="caixa-feedback" class="caixa-feedback" aria-live="polite" hidden>
+                <h3 id="titulo-feedback"></h3>
+                <p id="texto-feedback"></p>
+                <button id="botao-continuar" class="botao botao-principal">
+                    CONTINUAR VIAGEM →
                 </button>
             </div>
-
         </section>
 
-        <!-- TELA FINAL -->
         <section id="tela-final" class="tela">
             <div class="ampulheta" aria-hidden="true">⌛</div>
-
             <p class="etiqueta">FIM DA JORNADA</p>
-
             <h2 id="titulo-final">Viagem concluída!</h2>
-
             <p id="mensagem-final"></p>
 
             <div class="placar">
                 <span>SUA PONTUAÇÃO</span>
-                <strong id="pontuacao-final">0/20</strong>
+                <strong id="pontuacao-final">0/10</strong>
             </div>
-
-            <!-- CRÉDITOS DOS CRIADORES -->
-            <p id="creditos-final" class="creditos-final">
-                Desenvolvido por Pedro Henrique e Hellen Dias
-            </p>
 
             <button id="botao-reiniciar" class="botao botao-principal">
                 ↻ VIAJAR NOVAMENTE
@@ -162,13 +97,13 @@
             </button>
         </section>
 
+        <footer class="rodape">
+            <span>UMA VIAGEM ATRAVÉS DO TEMPO</span>
+            <span>✦</span>
+        </footer>
+
     </main>
 
-    <footer class="rodape">
-        <p>Uma experiência interativa sobre tecnologia, escolhas e futuro.</p>
-    </footer>
-
     <script src="script.js"></script>
-
 </body>
 </html>

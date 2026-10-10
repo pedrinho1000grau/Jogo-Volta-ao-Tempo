@@ -1,6 +1,4 @@
 
-const telas = document.querySelectorAll(".tela");
-
 const telaInicial = document.querySelector("#tela-inicial");
 const telaInstrucoes = document.querySelector("#tela-instrucoes");
 const telaJogo = document.querySelector("#tela-jogo");
@@ -22,8 +20,6 @@ const botaoContinuar = document.querySelector("#botao-continuar");
 
 const TOTAL = 20;
 
-// A rota mistura passado, presente e futuro.
-// Cada pergunta é um ponto da missão temporal.
 const perguntas = [
     {
         epoca: "PRESENTE — 2026",
@@ -33,29 +29,29 @@ const perguntas = [
             {
                 texto: "Ajudar a compreender o passado",
                 correta: true,
-                explicacao: "Correto! Documentos, objetos, imagens e relatos ajudam os historiadores a investigar o passado."
+                explicacao: "Documentos, objetos, imagens e relatos ajudam os historiadores a investigar o passado."
             },
             {
                 texto: "Prever exatamente tudo o que acontecerá",
                 correta: false,
-                explicacao: "Fontes históricas ajudam a compreender acontecimentos passados, mas não permitem prever exatamente o futuro."
+                explicacao: "Fontes históricas ajudam a compreender o passado, mas não permitem prever exatamente o futuro."
             }
         ]
     },
     {
         epoca: "FUTURO — 2150",
         titulo: "O alerta das máquinas",
-        enunciado: "A Cronos leva você a 2150. Nesse futuro fictício, sistemas automatizados controlam boa parte das cidades. Qual é um risco real do uso de sistemas automatizados sem supervisão adequada?",
+        enunciado: "Nesse futuro fictício, sistemas automatizados controlam boa parte das cidades. Qual é um risco real de usá-los sem supervisão adequada?",
         alternativas: [
             {
                 texto: "Decisões injustas e falhas difíceis de detectar",
                 correta: true,
-                explicacao: "Sistemas automatizados podem reproduzir vieses ou cometer erros. Supervisão humana e responsabilidade são importantes."
+                explicacao: "Sistemas automatizados podem reproduzir vieses ou cometer erros. Supervisão humana é importante."
             },
             {
                 texto: "Todas as máquinas deixam de precisar de energia",
                 correta: false,
-                explicacao: "Máquinas continuam dependendo de fontes de energia e manutenção, independentemente do nível de tecnologia."
+                explicacao: "Máquinas continuam dependendo de energia e manutenção."
             }
         ]
     },
@@ -67,12 +63,12 @@ const perguntas = [
             {
                 texto: "1964",
                 correta: true,
-                explicacao: "Correto! O golpe de 1964 depôs o presidente João Goulart e deu início à ditadura militar brasileira."
+                explicacao: "O golpe de 1964 depôs o presidente João Goulart e deu início à ditadura militar brasileira."
             },
             {
                 texto: "1988",
                 correta: false,
-                explicacao: "Em 1988 foi promulgada a Constituição que consolidou a redemocratização. O golpe ocorreu em 1964."
+                explicacao: "Em 1988 foi promulgada a Constituição brasileira atual. O golpe ocorreu em 1964."
             }
         ]
     },
@@ -84,7 +80,7 @@ const perguntas = [
             {
                 texto: "Atenas",
                 correta: true,
-                explicacao: "Atenas desenvolveu uma forma de democracia direta, mas mulheres, pessoas escravizadas e estrangeiros não tinham os mesmos direitos políticos."
+                explicacao: "Atenas desenvolveu uma forma de democracia direta, mas muitos habitantes não tinham direitos políticos."
             },
             {
                 texto: "Esparta",
@@ -106,7 +102,7 @@ const perguntas = [
             {
                 texto: "O desaparecimento de todas as cidades",
                 correta: false,
-                explicacao: "A industrialização contribuiu justamente para o crescimento de muitas cidades."
+                explicacao: "A industrialização contribuiu para o crescimento de muitas cidades."
             }
         ]
     },
@@ -118,10 +114,10 @@ const perguntas = [
             {
                 texto: "Testes, supervisão e possibilidade de contestar decisões",
                 correta: true,
-                explicacao: "Auditorias, supervisão e mecanismos de contestação ajudam a identificar erros e responsabilizar os envolvidos."
+                explicacao: "Auditorias e supervisão ajudam a identificar erros e responsabilizar os envolvidos."
             },
             {
-                texto: "Permitir que o sistema tome qualquer decisão sem controle",
+                texto: "Permitir qualquer decisão sem controle",
                 correta: false,
                 explicacao: "A ausência de supervisão pode ampliar riscos e dificultar a correção de decisões prejudiciais."
             }
@@ -164,7 +160,7 @@ const perguntas = [
     {
         epoca: "PRÉ-HISTÓRIA",
         titulo: "Muito antes da escrita",
-        enunciado: "Você chega a um período muito anterior às primeiras civilizações. Como os pesquisadores estudam sociedades pré-históricas?",
+        enunciado: "Como os pesquisadores estudam sociedades pré-históricas?",
         alternativas: [
             {
                 texto: "Analisando fósseis, ferramentas e pinturas rupestres",
@@ -174,14 +170,14 @@ const perguntas = [
             {
                 texto: "Usando exclusivamente jornais da época",
                 correta: false,
-                explicacao: "Não existiam jornais na Pré-História. Os pesquisadores analisam vestígios arqueológicos e outros registros."
+                explicacao: "Não existiam jornais na Pré-História. Pesquisadores analisam vestígios arqueológicos."
             }
         ]
     },
     {
         epoca: "PRESENTE — 2026",
         titulo: "O rastro da história",
-        enunciado: "De volta ao presente, você precisa distinguir uma informação confiável de um boato. Qual atitude é mais adequada?",
+        enunciado: "Você volta ao presente e precisa distinguir uma informação confiável de um boato. Qual atitude é mais adequada?",
         alternativas: [
             {
                 texto: "Verificar a fonte e comparar informações",
@@ -191,7 +187,7 @@ const perguntas = [
             {
                 texto: "Compartilhar a primeira mensagem que receber",
                 correta: false,
-                explicacao: "Uma mensagem pode estar errada ou manipulada. Verificar antes de compartilhar é essencial."
+                explicacao: "Uma mensagem pode estar errada ou manipulada. Verifique antes de compartilhar."
             }
         ]
     },
@@ -220,7 +216,7 @@ const perguntas = [
             {
                 texto: "Avaliar riscos, proteger direitos e preparar trabalhadores",
                 correta: true,
-                explicacao: "A automação pode transformar profissões. Educação, proteção social e planejamento ajudam a lidar com essas mudanças."
+                explicacao: "Educação, proteção social e planejamento ajudam a lidar com as mudanças causadas pela automação."
             },
             {
                 texto: "Ignorar os efeitos sobre a população",
@@ -237,7 +233,7 @@ const perguntas = [
             {
                 texto: "Feudalismo",
                 correta: true,
-                explicacao: "O feudalismo caracterizou partes da Europa medieval, embora as sociedades medievais variassem bastante entre regiões."
+                explicacao: "O feudalismo caracterizou partes da Europa medieval, embora as sociedades variassem entre regiões."
             },
             {
                 texto: "Capitalismo industrial",
@@ -288,7 +284,7 @@ const perguntas = [
             {
                 texto: "Buscar rotas comerciais e expandir territórios",
                 correta: true,
-                explicacao: "Interesses comerciais, políticos e religiosos contribuíram para as navegações, que também estiveram ligadas à colonização."
+                explicacao: "Interesses comerciais, políticos e religiosos contribuíram para as navegações, ligadas também à colonização."
             },
             {
                 texto: "Construir ferrovias entre continentes",
@@ -339,7 +335,7 @@ const perguntas = [
             {
                 texto: "Para compreender mudanças, permanências e escolhas humanas",
                 correta: true,
-                explicacao: "O estudo da História ajuda a compreender como as sociedades se transformaram e a refletir sobre problemas atuais."
+                explicacao: "A História ajuda a compreender como as sociedades se transformaram e a refletir sobre problemas atuais."
             },
             {
                 texto: "Porque o passado determina inevitavelmente tudo o que virá",
@@ -356,7 +352,7 @@ const perguntas = [
             {
                 texto: "Aprender com o passado, avaliar evidências e agir com responsabilidade",
                 correta: true,
-                explicacao: "Conhecimento histórico, pensamento crítico e responsabilidade não garantem um futuro perfeito, mas ajudam a tomar decisões melhores."
+                explicacao: "Conhecimento histórico, pensamento crítico e responsabilidade ajudam a tomar decisões melhores."
             },
             {
                 texto: "Apagar todos os registros do passado",
@@ -374,11 +370,14 @@ let energia = 100;
 let maiorNivel = 0;
 let erros = 0;
 let destinoDepoisDoFeedback = null;
-let finalLiberado = false;
 
 function mostrarTela(telaEscolhida) {
-    telas.forEach(tela => tela.classList.remove("ativa"));
+    document.querySelectorAll(".tela").forEach(tela => {
+        tela.classList.remove("ativa");
+    });
+
     telaEscolhida.classList.add("ativa");
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function criarTelaMissao() {
@@ -389,28 +388,35 @@ function criarTelaMissao() {
     telaMissao = document.createElement("section");
     telaMissao.id = "tela-missao";
     telaMissao.className = "tela";
+
     telaMissao.innerHTML = `
         <p class="etiqueta">ARQUIVO TEMPORAL Nº 001</p>
         <div class="ampulheta" aria-hidden="true">⌛</div>
         <h2>Uma missão além do tempo</h2>
+
         <p class="descricao">
             Ano 2189. Uma falha misteriosa desestabilizou a linha temporal.
             Acontecimentos históricos estão desaparecendo e o futuro tornou-se
             imprevisível.
         </p>
+
         <p class="descricao">
             Você foi convocado para pilotar a Cronos, uma máquina experimental
             capaz de atravessar épocas. Sua missão é recuperar os fragmentos
             temporais e restaurar o equilíbrio entre passado, presente e futuro.
         </p>
+
         <p class="descricao">
             Mas cuidado: cada resposta errada pode lançar você ainda mais longe
             no tempo. O futuro depende do que você descobrir pelo caminho.
         </p>
+
         <h3>O passado guarda as respostas. O futuro depende de você.</h3>
+
         <button id="botao-aceitar-missao" class="botao botao-principal">
             ACEITAR MISSÃO →
         </button>
+
         <button id="botao-cancelar-missao" class="botao botao-secundario">
             VOLTAR AO MENU
         </button>
@@ -427,6 +433,107 @@ function criarTelaMissao() {
     return telaMissao;
 }
 
+function configurarHistoriaRecolhivel() {
+    if (document.querySelector("#historia-recolhivel")) return;
+
+    const historia = document.createElement("details");
+    historia.id = "historia-recolhivel";
+    historia.className = "historia-recolhivel";
+
+    historia.innerHTML = `
+        <summary>📜 História da missão</summary>
+
+        <div class="texto-historia">
+            <p>
+                Estamos no ano de 2189. Uma falha misteriosa
+                desestabilizou a linha temporal.
+            </p>
+
+            <p>
+                Acontecimentos históricos estão desaparecendo,
+                e o futuro tornou-se imprevisível.
+            </p>
+
+            <p>
+                Você foi convocado para pilotar a Cronos, uma máquina
+                experimental capaz de atravessar épocas. Sua missão é
+                recuperar os fragmentos temporais e restaurar o equilíbrio
+                entre passado, presente e futuro.
+            </p>
+
+            <p class="frase-historia">
+                O passado guarda as respostas. O futuro depende de você.
+            </p>
+        </div>
+    `;
+
+    const cabecalho = telaJogo.querySelector(".cabecalho-jogo");
+
+    if (cabecalho) {
+        telaJogo.insertBefore(historia, cabecalho);
+    } else {
+        telaJogo.prepend(historia);
+    }
+
+    if (!document.querySelector("#estilo-historia-recolhivel")) {
+        const estilo = document.createElement("style");
+        estilo.id = "estilo-historia-recolhivel";
+
+        estilo.textContent = `
+            .historia-recolhivel {
+                margin: 0 0 20px;
+                border: 1px solid var(--dourado, #FFC857);
+                border-radius: 8px;
+                background: rgba(8, 18, 37, 0.95);
+                overflow: hidden;
+                text-align: left;
+            }
+
+            .historia-recolhivel summary {
+                padding: 14px 18px;
+                color: var(--ciano, #5CE1E6);
+                cursor: pointer;
+                font-weight: bold;
+                letter-spacing: 1px;
+                list-style: none;
+            }
+
+            .historia-recolhivel summary::-webkit-details-marker {
+                display: none;
+            }
+
+            .historia-recolhivel summary::after {
+                content: "+";
+                float: right;
+                color: var(--dourado, #FFC857);
+                font-size: 20px;
+            }
+
+            .historia-recolhivel[open] summary::after {
+                content: "−";
+            }
+
+            .historia-recolhivel .texto-historia {
+                padding: 0 18px 12px;
+                border-top: 1px solid rgba(255, 200, 87, 0.25);
+                color: var(--branco, #F4F1E8);
+                line-height: 1.6;
+            }
+
+            .historia-recolhivel .texto-historia p {
+                margin: 12px 0;
+            }
+
+            .historia-recolhivel .frase-historia {
+                color: var(--ciano, #5CE1E6);
+                font-weight: bold;
+            }
+        `;
+
+        document.head.appendChild(estilo);
+    }
+}
+
 function iniciarJogo() {
     atual = 0;
     pontuacao = 0;
@@ -435,15 +542,9 @@ function iniciarJogo() {
     maiorNivel = 0;
     erros = 0;
     destinoDepoisDoFeedback = null;
-    finalLiberado = false;
 
-    const telaMissao = document.querySelector("#tela-missao");
-    if (telaMissao) {
-        mostrarTela(telaJogo);
-    } else {
-        mostrarTela(telaJogo);
-    }
-
+    configurarHistoriaRecolhivel();
+    mostrarTela(telaJogo);
     atualizarEnergia();
     mostrarPergunta();
 }
@@ -455,7 +556,14 @@ function atualizarEnergia() {
         indicador = document.createElement("p");
         indicador.id = "energia-temporal";
         indicador.className = "etiqueta";
-        document.querySelector(".progresso").after(indicador);
+
+        const progresso = document.querySelector(".progresso");
+
+        if (progresso) {
+            progresso.after(indicador);
+        } else {
+            telaJogo.prepend(indicador);
+        }
     }
 
     indicador.textContent = `ENERGIA TEMPORAL: ${energia}%`;
@@ -473,11 +581,8 @@ function mostrarPergunta() {
 
     epoca.textContent = pergunta.epoca;
     tituloEpoca.textContent = pergunta.titulo;
-    numeroPergunta.textContent =
-        `DESAFIO ${maiorNivel + 1} DE ${TOTAL}`;
-
-    contador.textContent =
-        `SALTO ${String(maiorNivel + 1).padStart(2, "0")}`;
+    numeroPergunta.textContent = `DESAFIO ${maiorNivel + 1} DE ${TOTAL}`;
+    contador.textContent = `SALTO ${String(maiorNivel + 1).padStart(2, "0")}`;
 
     barraProgresso.style.width = `${(maiorNivel / TOTAL) * 100}%`;
 
@@ -515,21 +620,19 @@ function selecionarResposta(alternativaEscolhida, botaoEscolhido) {
     if (alternativaEscolhida.correta) {
         pontuacao++;
         energia = Math.min(100, energia + 10);
+        maiorNivel++;
 
         tituloFeedback.textContent = "Coordenadas estabilizadas! ✦";
         botaoEscolhido.classList.add("correta");
 
-        maiorNivel++;
-
         if (maiorNivel >= TOTAL) {
             destinoDepoisDoFeedback = "final";
+
             textoFeedback.textContent =
                 alternativaEscolhida.explicacao +
                 " Todos os fragmentos foram recuperados. A linha temporal está estável!";
         } else {
-            // Rota não linear: o próximo destino pode estar em outra época.
-            const proximo = escolherProximoDestino(atual);
-            destinoDepoisDoFeedback = proximo;
+            destinoDepoisDoFeedback = escolherProximoDestino(atual);
 
             textoFeedback.textContent =
                 alternativaEscolhida.explicacao +
@@ -540,11 +643,9 @@ function selecionarResposta(alternativaEscolhida, botaoEscolhido) {
         energia = Math.max(0, energia - 20);
 
         tituloFeedback.textContent = "Falha temporal! Recuando...";
-
         botaoEscolhido.classList.add("errada");
 
-        const anterior = Math.max(0, atual - 1);
-        destinoDepoisDoFeedback = anterior;
+        destinoDepoisDoFeedback = Math.max(0, atual - 1);
 
         textoFeedback.textContent =
             alternativaEscolhida.explicacao +
@@ -570,27 +671,26 @@ function selecionarResposta(alternativaEscolhida, botaoEscolhido) {
 }
 
 function escolherProximoDestino(indiceAtual) {
-    // Caminho intencionalmente não cronológico.
     const rotas = {
-        0: 1,   // Presente -> futuro
-        1: 2,   // Futuro -> ditadura
-        2: 3,   // Ditadura -> Grécia
-        3: 4,   // Grécia -> Revolução Industrial
-        4: 5,   // Revolução Industrial -> futuro
-        5: 6,   // Futuro -> Egito
-        6: 7,   // Egito -> ditadura
-        7: 8,   // Ditadura -> Pré-História
-        8: 9,   // Pré-História -> presente
-        9: 10,  // Presente -> Roma
-        10: 11, // Roma -> futuro
-        11: 12, // Futuro -> Idade Média
-        12: 13, // Idade Média -> redemocratização
-        13: 14, // Redemocratização -> Renascimento
-        14: 15, // Renascimento -> navegações
-        15: 16, // Navegações -> século XX
-        16: 17, // Século XX -> futuro
-        17: 18, // Futuro -> presente
-        18: 19  // Presente -> futuro final
+        0: 1,
+        1: 2,
+        2: 3,
+        3: 4,
+        4: 5,
+        5: 6,
+        6: 7,
+        7: 8,
+        8: 9,
+        9: 10,
+        10: 11,
+        11: 12,
+        12: 13,
+        13: 14,
+        14: 15,
+        15: 16,
+        16: 17,
+        17: 18,
+        18: 19
     };
 
     return rotas[indiceAtual] ?? 0;
@@ -612,13 +712,13 @@ function continuarViagem() {
 
 function mostrarResultado() {
     mostrarTela(telaFinal);
-
     barraProgresso.style.width = "100%";
 
     document.querySelector("#pontuacao-final").textContent =
         `${pontuacao}/${TOTAL}`;
 
     const percentual = (pontuacao / (TOTAL + erros)) * 100;
+
     let mensagem;
     let titulo;
 
@@ -653,11 +753,11 @@ function mostrarResultado() {
         resumo = document.createElement("p");
         resumo.id = "resumo-temporal";
         resumo.className = "descricao";
+
         document.querySelector("#pontuacao-final").parentNode.after(resumo);
     }
 
-    resumo.textContent =
-        `Erros temporais: ${erros} | Energia final: ${energia}%`;
+    resumo.textContent = `Erros temporais: ${erros} | Energia final: ${energia}%`;
 }
 
 document.querySelector("#botao-iniciar")

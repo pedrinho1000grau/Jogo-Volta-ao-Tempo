@@ -1,4 +1,4 @@
-const telaInicial = document.querySelector("#tela-inicial");
+'const telaInicial = document.querySelector("#tela-inicial");
 const telaInstrucoes = document.querySelector("#tela-instrucoes");
 const telaJogo = document.querySelector("#tela-jogo");
 const telaFinal = document.querySelector("#tela-final");

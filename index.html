@@ -1,109 +1,167 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#061a2b">
+    <meta name="theme-color" content="#071426">
     <title>De Volta ao Futuro</title>
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="js/script.js"></script>
 </head>
+
 <body>
-    <main class="caixa-principal">
+    <main class="container">
+        <header class="cabecalho">
+            <p class="assinatura">CRONOS SYSTEM // ARQUIVO TEMPORAL</p>
+            <h1>DE VOLTA AO <span>FUTURO</span></h1>
+            <p class="subtitulo">Uma aventura educativa através do tempo</p>
+        </header>
 
+        <!-- MENU INICIAL -->
         <section id="tela-inicial" class="tela ativa">
-            <div class="ampulheta" aria-hidden="true">⌛</div>
+            <span class="selo">MISSÃO TEMPORAL Nº 001</span>
+            <div class="simbolo">⌛</div>
 
-            <p class="subtitulo">UMA AVENTURA ATRAVÉS DAS ERAS</p>
-            <h1>DE VOLTA AO<br><span>FUTURO</span></h1>
+            <h2>O passado guarda as respostas.</h2>
 
-            <div class="ornamento">✦ ━━━━━━━━━ ✦</div>
-            <p class="descricao">
-                O tempo está em suas mãos. Prepare-se para explorar
-                diferentes épocas e descobrir os segredos da história.
+            <p>
+                Ano 2189. Uma falha misteriosa desestabilizou a linha temporal.
+                Acontecimentos históricos estão desaparecendo e o futuro tornou-se
+                imprevisível.
             </p>
 
-            <button id="botao-iniciar" class="botao botao-principal">
-                <span>▶</span> INICIAR VIAGEM
+            <p>
+                Você foi convocado para pilotar a Cronos, uma máquina experimental
+                capaz de atravessar épocas. Explore diferentes períodos, descubra
+                acontecimentos históricos e escolha como sua história vai se desenrolar.
+            </p>
+
+            <button id="botao-iniciar" class="botao principal">
+                INICIAR AVENTURA →
             </button>
 
-            <button id="botao-como-jogar" class="botao botao-secundario">
-                ◇ COMO JOGAR
+            <button id="botao-instrucoes" class="botao secundario">
+                COMO JOGAR
             </button>
         </section>
 
+        <!-- INSTRUÇÕES -->
         <section id="tela-instrucoes" class="tela">
-            <p class="etiqueta">MANUAL DO VIAJANTE</p>
-            <h2>Como jogar?</h2>
+            <span class="selo">MANUAL DE NAVEGAÇÃO</span>
+            <h2>Como jogar</h2>
 
-            <p class="texto-instrucao">
-                Prepare-se para uma jornada através do tempo!
-            </p>
-
-            <ul class="instrucoes">
-                <li>Explore diferentes épocas históricas.</li>
-                <li>Responda às perguntas para avançar na jornada.</li>
-                <li>Leia as explicações e aprenda algo novo.</li>
-                <li>Acumule pontos acertando as respostas.</li>
+            <ul>
+                <li>Leia o desafio de cada época histórica.</li>
+                <li>Escolha uma das três alternativas disponíveis.</li>
+                <li>Suas escolhas podem avançar, saltar ou retornar para outra etapa.</li>
+                <li>Algumas escolhas permitem mudar de narrativa.</li>
+                <li>Decisões perigosas podem provocar Game Over.</li>
+                <li>Existem dois finais possíveis para a aventura.</li>
             </ul>
 
-            <button id="botao-voltar" class="botao botao-principal">
-                VOLTAR AO INÍCIO
+            <p class="dica">
+                Dica: pense nas consequências de cada decisão e observe as pistas históricas.
+            </p>
+
+            <button id="botao-voltar-menu" class="botao principal">
+                VOLTAR AO MENU
             </button>
         </section>
 
+        <!-- JOGO -->
         <section id="tela-jogo" class="tela">
-            <header class="cabecalho-jogo">
-                <span class="marca">⌛ DE VOLTA AO FUTURO</span>
-                <span id="contador">VIAGEM 01</span>
-            </header>
+            <div class="status">
+                <div>
+                    <span class="rotulo">PROGRESSO DA MISSÃO</span>
+                    <strong id="numero-pergunta">ETAPAS: 0 / 20</strong>
+                </div>
+                <span id="contador">SALTO 01</span>
+            </div>
 
-            <div class="progresso">
+            <div class="trilho">
                 <div id="barra-progresso"></div>
             </div>
 
-            <p id="epoca" class="etiqueta">PRÓXIMA PARADA</p>
-            <h2 id="titulo-epoca">O início da jornada</h2>
-            <p id="numero-pergunta" class="numero-pergunta"></p>
+            <div class="energia">
+                <span class="rotulo">ESTABILIDADE DA CRONOS</span>
+                <div class="trilho-energia">
+                    <div id="barra-energia"></div>
+                </div>
+                <strong id="texto-energia">100%</strong>
+            </div>
+
+            <p id="epoca" class="etiqueta-epoca"></p>
+            <h2 id="titulo-epoca"></h2>
+
+            <figure class="quadro-imagem">
+                <img id="imagem-historia" src="imagens/nivel1.jpg" alt="Cena da viagem temporal">
+                <figcaption id="legenda-imagem"></figcaption>
+            </figure>
 
             <div class="caixa-perguntas"></div>
             <div class="caixa-alternativas"></div>
 
-            <div id="caixa-feedback" class="caixa-feedback" aria-live="polite" hidden>
+            <section id="caixa-feedback" class="feedback" hidden aria-live="polite">
                 <h3 id="titulo-feedback"></h3>
                 <p id="texto-feedback"></p>
-                <button id="botao-continuar" class="botao botao-principal">
+                <button id="botao-continuar" class="botao principal">
                     CONTINUAR VIAGEM →
                 </button>
-            </div>
+            </section>
         </section>
 
+        <!-- GAME OVER / VITÓRIA -->
         <section id="tela-final" class="tela">
-            <div class="ampulheta" aria-hidden="true">⌛</div>
-            <p class="etiqueta">FIM DA JORNADA</p>
-            <h2 id="titulo-final">Viagem concluída!</h2>
-            <p id="mensagem-final"></p>
+            <div class="simbolo">✦</div>
+            <span class="selo">REGISTRO DA MISSÃO</span>
 
-            <div class="placar">
-                <span>SUA PONTUAÇÃO</span>
-                <strong id="pontuacao-final">0/10</strong>
-            </div>
+            <h2 class="titulo-resultado"></h2>
+            <p class="texto-resultado"></p>
 
-            <button id="botao-reiniciar" class="botao botao-principal">
-                ↻ VIAJAR NOVAMENTE
+            <button class="novamente-btn botao principal" hidden>
+                RECOMEÇAR DO INÍCIO
             </button>
 
-            <button id="botao-inicio-final" class="botao botao-secundario">
-                VOLTAR AO INÍCIO
+            <button class="creditos-btn botao principal" hidden>
+                VER CRÉDITOS →
+            </button>
+        </section>
+
+        <!-- CRÉDITOS -->
+        <section id="tela-creditos" class="tela tela-creditos">
+            <span class="selo">ARQUIVO FINALIZADO</span>
+            <h2>Créditos</h2>
+
+            <div class="creditos-conteudo">
+                <p><strong>Jogo:</strong> De Volta ao Futuro</p>
+                <p><strong>Desenvolvedores:</strong> Pedro Henrique e Hellen Dias</p>
+                <p><strong>Turma:</strong> 3º I</p>
+                <p><strong>Disciplina:</strong> Matemática II — Programação</p>
+                <p><strong>Professor:</strong> Fábio Cesar Bimbati</p>
+
+                <h3>Sites e ferramentas utilizados</h3>
+                <ul>
+                    <li>Coolors</li>
+                    <li>ChatGPT</li>
+                    <li>Pinterest</li>
+                    <li>GitHub</li>
+                    <li>Visual Studio Code</li>
+                    <li>Google Classroom</li>
+                    <li>Google Drive</li>
+                </ul>
+            </div>
+
+            <p class="agradecimento">Obrigado por viajar pela História!</p>
+
+            <button class="voltar-inicio-btn botao principal">
+                VOLTAR À TELA INICIAL
             </button>
         </section>
 
         <footer class="rodape">
-            <span>UMA VIAGEM ATRAVÉS DO TEMPO</span>
-            <span>✦</span>
+            <span>CRONOS SYSTEMS</span>
+            <span>© 2189 — LINHA TEMPORAL EM RESTAURAÇÃO</span>
         </footer>
-
     </main>
-
-    <script src="script.js"></script>
 </body>
 </html>

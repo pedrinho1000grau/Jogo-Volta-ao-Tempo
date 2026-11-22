@@ -827,3 +827,16 @@ botaoVoltarInicio.addEventListener("click", reiniciaJogo);
 
 // Estado inicial.
 reiniciaJogo();
+// Mantém os cinco pontos de Game Over previstos na Parte 5.
+rotas[10].opcoes[2] = [
+    "gameover",
+    null,
+    "A cidade autônoma ficou sem controle. A escolha comprometeu a missão temporal."
+];
+
+// Outras conexões opcionais para deixar a aventura menos linear.
+rotas[11].opcoes[2] = ["trocar", 12];
+rotas[12].opcoes[2] = ["trocar", 11];
+rotas[14].opcoes[2] = ["trocar", 13];
+rotas[16].opcoes[2] = ["trocar", 15];
+rotas[19].opcoes[2] = ["trocar", 18];

@@ -840,3 +840,7 @@ rotas[12].opcoes[2] = ["trocar", 11];
 rotas[14].opcoes[2] = ["trocar", 13];
 rotas[16].opcoes[2] = ["trocar", 15];
 rotas[19].opcoes[2] = ["trocar", 18];
+historiaFinal += aleatorio([
+    opcaoSelecionada.afirmacao,
+    `Registro da escolha: ${opcaoSelecionada.texto}.`
+]) + "\n";
